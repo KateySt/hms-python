@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{{ title or "FastAPI Auth" }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+<header class="bg-blue-600 text-white p-4">
+    <nav class="flex gap-4 justify-center">
+        {% if user %}
+        <a href="/auth/logout" class="hover:underline">Logout</a>
+        {% else %}
+        <a href="/auth/signup" class="hover:underline">Sign up</a>
+        <a href="/auth/login" class="hover:underline">Login</a>
+        {% endif %}
+    </nav>
+</header>
+
+<main class="max-w-2xl mx-auto p-6">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
