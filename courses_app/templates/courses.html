@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Courses</title>
+</head>
+<body>
+<h1>Courses</h1>
+<a href="{% url 'get_me' %}">Profile</a>
+<a href="{% url 'create_course' %}">create new</a>
+<ul>
+    {% for course in courses %}
+    <li>
+        <p><strong>Name:</strong> {{ course.name }}</p>
+        <article><strong>Description:</strong> {{ course.description }}</article>
+        <p>
+            <strong>Date</strong> from {{ course.start_date }} until {{ course.end_date }}
+        </p>
+    </li>
+    <a href="{% url 'edit_course' course.id %}">Update</a>
+    {% empty %}
+    <li>none</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
