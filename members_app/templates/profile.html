@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<h1>My Profile</h1>
+<a href="{% url 'all_courses' %}">All Courses</a>
+
+<div style="margin-top: 20px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="background: {{ member.color }}; width: 20px; height: 20px; border-radius: 50%;"></div>
+        <p>Name: <strong>{{ member.full_name }}</strong></p>
+        <p>Email: <strong>{{ member.email }}</strong></p>
+        <p>Birthday: <strong>{{ member.date_of_birth }}</strong></p>
+        <p>Gender: <strong>{{ member.gender }}</strong></p>
+        <p>Language: <strong>{{ member.language }}</strong></p>
+        <p>Phone: <strong>{{ member.phone }}</strong></p>
+    </div>
+
+    <a href="{% url 'edit_me' %}">Edit Profile</a>
+</div>
+
+{% if member.courses.all %}
+<h3>My Courses:</h3>
+<ul>
+    {% for course in member.courses.all %}
+    <li>
+        {{ course.name }}
+        <a href="{% url 'remove_course_from_member' course.id %}">Remove</a>
+    </li>
+    {% empty %}
+    <li>No courses yet</li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
