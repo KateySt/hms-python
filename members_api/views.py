@@ -1,10 +1,11 @@
 import jwt
 from django.conf import settings
 from django.contrib.auth import get_user_model, authenticate
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets, status
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -18,7 +19,6 @@ User = get_user_model()
 class MembersViewSet(viewsets.ModelViewSet):
     serializer_class = MemberSerializer
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['first_name', 'last_name', 'email', 'phone']
     ordering_fields = ['date_joined', 'last_login']
@@ -27,7 +27,6 @@ class MembersViewSet(viewsets.ModelViewSet):
 class CourseViewSet(viewsets.ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
-    permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['name', 'description']
     ordering_fields = ['start_date', 'end_date']
@@ -37,6 +36,7 @@ class LoginView(APIView):
     permission_classes = [AllowAny]
     serializer_class = LoginSerializer
 
+    @extend_schema(auth=[])
     def post(self, request):
         user = authenticate(
             username=request.data.get('phone'),
@@ -55,6 +55,7 @@ class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
     serializer_class = RefreshTokenSerializer
 
+    @extend_schema(auth=[])
     def post(self, request):
         token = request.data.get('refresh_token')
         if not token:
