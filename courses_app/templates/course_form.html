@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <title>{% if form.instance.pk %} Update course {% else %} Create course {% endif %}</title>
+</head>
+<body>
+<h1>{% if form.instance.pk %} Update course {% else %} Create course {% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'all_courses' %}">Back to list</a>
+</body>
+</html>
