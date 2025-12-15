@@ -98,6 +98,25 @@ services:
       - .:/app
     command: celery -A app worker -l info
 
+  celery_flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_flower
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      web:
+        condition: service_started
+      redis:
+        condition: service_started
+    volumes:
+      - .:/app
+    ports:
+      - "5555:5555"
+    command: celery -A app flower -l info
+
   kanchi:
     image: getkanchi/kanchi:latest
     container_name: kanchi
@@ -107,6 +126,8 @@ services:
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
     depends_on:
+      celery_flower:
+        condition: service_started
       redis:
         condition: service_healthy
     volumes:
