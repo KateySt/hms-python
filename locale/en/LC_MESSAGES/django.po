@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-20 17:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: chart_app/models.py:9 members_app/models.py:69
+#: notifications_app/models.py:27
+msgid "Member"
+msgstr ""
+
+#: chart_app/models.py:10 notifications_app/models.py:15
+msgid "Message"
+msgstr ""
+
+#: chart_app/models.py:11 courses_app/models.py:10
+#: notifications_app/models.py:20
+msgid "Created at"
+msgstr ""
+
+#: chart_app/models.py:12 courses_app/models.py:11
+msgid "Updated at"
+msgstr ""
+
+#: courses_app/models.py:6
+msgid "Name"
+msgstr ""
+
+#: courses_app/models.py:7
+msgid "Description"
+msgstr ""
+
+#: courses_app/models.py:8
+msgid "Start date"
+msgstr ""
+
+#: courses_app/models.py:9
+msgid "End date"
+msgstr ""
+
+#: courses_app/models.py:17
+msgid "Course"
+msgstr ""
+
+#: courses_app/models.py:18 members_app/models.py:60
+msgid "Courses"
+msgstr ""
+
+#: members_app/models.py:9
+msgid "English"
+msgstr ""
+
+#: members_app/models.py:10
+msgid "Ukraine"
+msgstr ""
+
+#: members_app/models.py:14
+msgid "Male"
+msgstr ""
+
+#: members_app/models.py:15
+msgid "Female"
+msgstr ""
+
+#: members_app/models.py:16
+msgid "Other"
+msgstr ""
+
+#: members_app/models.py:23
+msgid "The Phone field must be set"
+msgstr ""
+
+#: members_app/models.py:25
+msgid "The Email field must be set"
+msgstr ""
+
+#: members_app/models.py:39
+msgid "First name"
+msgstr ""
+
+#: members_app/models.py:40
+msgid "Last name"
+msgstr ""
+
+#: members_app/models.py:41
+msgid "Phone"
+msgstr ""
+
+#: members_app/models.py:42
+msgid "Email"
+msgstr ""
+
+#: members_app/models.py:43
+msgid "Date of birth"
+msgstr ""
+
+#: members_app/models.py:45
+msgid "Image"
+msgstr ""
+
+#: members_app/models.py:47
+msgid "Date joined"
+msgstr ""
+
+#: members_app/models.py:48
+msgid "Date of last login"
+msgstr ""
+
+#: members_app/models.py:50
+msgid "Gender"
+msgstr ""
+
+#: members_app/models.py:51
+msgid "Language"
+msgstr ""
+
+#: members_app/models.py:53
+msgid "Color"
+msgstr ""
+
+#: members_app/models.py:55
+msgid "Superuser"
+msgstr ""
+
+#: members_app/models.py:56
+msgid "Staff"
+msgstr ""
+
+#: members_app/models.py:57
+msgid "Active"
+msgstr ""
+
+#: members_app/models.py:58
+msgid "Deleted"
+msgstr ""
+
+#: members_app/models.py:70
+msgid "Members"
+msgstr ""
+
+#: members_app/models.py:72
+msgid "Can add courses"
+msgstr ""
+
+#: members_app/models.py:73
+msgid "Can edit courses"
+msgstr ""
+
+#: members_app/models.py:74
+msgid "Can delete courses"
+msgstr ""
+
+#: notifications_app/models.py:11
+msgid "Title"
+msgstr ""
+
+#: notifications_app/models.py:12
+msgid "Notification title"
+msgstr ""
+
+#: notifications_app/models.py:16
+msgid "Notification message content"
+msgstr ""
+
+#: notifications_app/models.py:21
+msgid "Date and time when notification was created"
+msgstr ""
+
+#: notifications_app/models.py:28
+msgid "User who receives this notification"
+msgstr ""
+
+#: notifications_app/models.py:35
+msgid "Notification"
+msgstr ""
+
+#: notifications_app/models.py:36
+msgid "Notifications"
+msgstr ""

@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 
 import os
 
-from channels.routing import ProtocolTypeRouter
+from asgi_cors import asgi_cors
+from channels.auth import AuthMiddlewareStack
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.security.websocket import AllowedHostsOriginValidator
 from django.core.asgi import get_asgi_application
+
+from chart_app.routing import websocket_urlpatterns
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
@@ -18,5 +23,11 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    'ws': None
+    'websocket': AllowedHostsOriginValidator(
+        AuthMiddlewareStack(
+            URLRouter(websocket_urlpatterns)
+        )
+    )
 })
+
+application = asgi_cors(application, allow_all=True)

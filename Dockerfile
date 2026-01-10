@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nano \
     libpq-dev \
     python3-dev \
+    gettext \
     pkg-config \
     gcc \
     netcat-openbsd \

@@ -1,0 +1,150 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-20 17:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: chart_app/models.py:9 members_app/models.py:69
+#: notifications_app/models.py:27
+msgid "Member"
+msgstr "عضو"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "Created at"
+msgstr "تاريخ الإنشاء"
+
+msgid "Updated at"
+msgstr "تاريخ التحديث"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Start date"
+msgstr "تاريخ البدء"
+
+msgid "End date"
+msgstr "تاريخ الانتهاء"
+
+msgid "Course"
+msgstr "دورة"
+
+msgid "Courses"
+msgstr "الدورات"
+
+msgid "English"
+msgstr "الإنجليزية"
+
+msgid "Ukraine"
+msgstr "الأوكرانية"
+
+msgid "Male"
+msgstr "ذكر"
+
+msgid "Female"
+msgstr "أنثى"
+
+msgid "Other"
+msgstr "آخر"
+
+msgid "The Phone field must be set"
+msgstr "يجب تعبئة حقل الهاتف"
+
+msgid "The Email field must be set"
+msgstr "يجب تعبئة حقل البريد الإلكتروني"
+
+msgid "First name"
+msgstr "الاسم الأول"
+
+msgid "Last name"
+msgstr "اسم العائلة"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Date of birth"
+msgstr "تاريخ الميلاد"
+
+msgid "Image"
+msgstr "الصورة"
+
+msgid "Date joined"
+msgstr "تاريخ الانضمام"
+
+msgid "Date of last login"
+msgstr "تاريخ آخر تسجيل دخول"
+
+msgid "Gender"
+msgstr "الجنس"
+
+msgid "Language"
+msgstr "اللغة"
+
+msgid "Color"
+msgstr "اللون"
+
+msgid "Superuser"
+msgstr "مشرف عام"
+
+msgid "Staff"
+msgstr "طاقم العمل"
+
+msgid "Active"
+msgstr "نشط"
+
+msgid "Deleted"
+msgstr "محذوف"
+
+msgid "Members"
+msgstr "الأعضاء"
+
+msgid "Can add courses"
+msgstr "يمكنه إضافة دورات"
+
+msgid "Can edit courses"
+msgstr "يمكنه تعديل الدورات"
+
+msgid "Can delete courses"
+msgstr "يمكنه حذف الدورات"
+
+msgid "Title"
+msgstr "العنوان"
+
+msgid "Notification title"
+msgstr "عنوان الإشعار"
+
+msgid "Notification message content"
+msgstr "محتوى رسالة الإشعار"
+
+msgid "Date and time when notification was created"
+msgstr "تاريخ ووقت إنشاء الإشعار"
+
+msgid "User who receives this notification"
+msgstr "المستخدم الذي يستلم هذا الإشعار"
+
+msgid "Notification"
+msgstr "إشعار"
+
+msgid "Notifications"
+msgstr "الإشعارات"

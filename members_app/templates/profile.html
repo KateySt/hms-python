@@ -17,6 +17,7 @@
         <p>Gender: <strong>{{ member.gender }}</strong></p>
         <p>Language: <strong>{{ member.language }}</strong></p>
         <p>Phone: <strong>{{ member.phone }}</strong></p>
+        <img src="{{ member.image }}" alt="User avatar" style="max-width: 300px;">
     </div>
 
     <a href="{% url 'edit_me' %}">Edit Profile</a>

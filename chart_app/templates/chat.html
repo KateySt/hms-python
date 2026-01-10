@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+</head>
+<body>
+    <h2>Chat</h2>
+    {% if user.is_authenticated %}
+     <div id="messages">
+        {% for msg in messages %}
+            <div>
+                <span>{{ msg.member.username }}:</span>
+                <span>{{ msg.message }}</span>
+                <small>{{ msg.created_at|date:"H:i:s" }}</small>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="chat-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div id="error"></div>
+        <button type="submit">Send</button>
+    </form>
+    {% else %}
+    <p>Please <a href="{% url 'login' %}">login</a> to chat.</p>
+    {% endif %}
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const chatForm = document.getElementById('chat-form');
+        const errorDiv = document.getElementById('error');
+        const messageInput = chatForm.querySelector('textarea');
+        const roomName = "{{ room_name }}";
+        const ws_scheme = window.location.protocol === "https:" ? "wss" : "ws";
+        const chatSocket = new WebSocket(
+            ws_scheme + '://' + window.location.host + '/ws/chart/' + roomName + '/'
+        );
+
+        chatSocket.onopen = ()=> console.log('Chat socket opened');
+        chatSocket.onclose = ()=> console.error('Chat socket closed unexpectedly');
+
+        chatSocket.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            const div = document.createElement('div');
+            div.classList.add('message');
+            div.innerHTML = `<span class="username">${data.username || 'Anonymous'}:</span>
+                             <span class="text">${data.message}</span>
+                             <small>${new Date().toLocaleTimeString()}</small>`;
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        };
+
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = messageInput.value.trim();
+
+            if (!message) {
+                errorDiv.textContent = "Message cannot be empty";
+                return;
+            }
+
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }));
+
+            messageInput.value = '';
+            errorDiv.textContent = '';
+        });
+    </script>
+</body>
+</html>
