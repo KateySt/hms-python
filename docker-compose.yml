@@ -1,0 +1,164 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py migrate && uvicorn app.asgi:application --host 0.0.0.0 --port 8000 --reload"
+    container_name: django-web
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $POSTGRES_USER -d $POSTGRES_DB']
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:8
+    container_name: pgadmin
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  celery_beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_beat
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      redis:
+        condition: service_started
+      celery_worker:
+        condition: service_started
+    command: celery -A app beat -l info
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_worker
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_started
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    command: celery -A app worker -l info
+    healthcheck:
+      test: [ "CMD-SHELL", "celery -A app inspect ping || exit 1" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  celery_flower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_flower
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      web:
+        condition: service_started
+      redis:
+        condition: service_started
+    volumes:
+      - .:/app
+    ports:
+      - "5555:5555"
+    command: celery -A app flower -l info
+
+  kanchi:
+    image: getkanchi/kanchi:latest
+    container_name: kanchi
+    ports:
+      - "3000:3000"
+      - "8765:8765"
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
+    depends_on:
+      celery_flower:
+        condition: service_started
+      redis:
+        condition: service_healthy
+    volumes:
+      - kanchi_data:/data
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio
+    entrypoint: sh
+    command: >
+      -c 'mkdir -p /data/uploads
+      && minio server /data'
+    ports:
+      - 9000:9000
+      - 9001:9001
+    volumes:
+      - minio_data:/data
+    environment:
+      MINIO_ROOT_USER: ${AWS_ACCESS_KEY_ID}
+      MINIO_ROOT_PASSWORD: ${AWS_SECRET_KEY}
+      MINIO_ADDRESS: ':9000'
+      MINIO_CONSOLE_ADDRESS: ':9001'
+
+volumes:
+  minio_data:
+  kanchi_data:
+  redis_data:
+  postgres_data:
+  pgadmin_data:

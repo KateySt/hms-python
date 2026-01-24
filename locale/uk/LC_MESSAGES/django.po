@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-20 17:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+#: chart_app/models.py:9 members_app/models.py:69
+#: notifications_app/models.py:27
+msgid "Member"
+msgstr "Учасник"
+
+#: chart_app/models.py:10 notifications_app/models.py:15
+msgid "Message"
+msgstr "Повідомлення"
+
+#: chart_app/models.py:11 courses_app/models.py:10
+#: notifications_app/models.py:20
+msgid "Created at"
+msgstr "Створено"
+
+#: chart_app/models.py:12 courses_app/models.py:11
+msgid "Updated at"
+msgstr "Оновлено"
+
+#: courses_app/models.py:6
+msgid "Name"
+msgstr "Назва"
+
+#: courses_app/models.py:7
+msgid "Description"
+msgstr "Опис"
+
+#: courses_app/models.py:8
+msgid "Start date"
+msgstr "Дата початку"
+
+#: courses_app/models.py:9
+msgid "End date"
+msgstr "Дата завершення"
+
+#: courses_app/models.py:17
+msgid "Course"
+msgstr "Курс"
+
+#: courses_app/models.py:18 members_app/models.py:60
+msgid "Courses"
+msgstr "Курси"
+
+#: members_app/models.py:9
+msgid "English"
+msgstr "Англійська"
+
+#: members_app/models.py:10
+msgid "Ukraine"
+msgstr "Українська"
+
+#: members_app/models.py:14
+msgid "Male"
+msgstr "Чоловіча"
+
+#: members_app/models.py:15
+msgid "Female"
+msgstr "Жіноча"
+
+#: members_app/models.py:16
+msgid "Other"
+msgstr "Інше"
+
+#: members_app/models.py:23
+msgid "The Phone field must be set"
+msgstr "Поле телефону повинно бути заповнене"
+
+#: members_app/models.py:25
+msgid "The Email field must be set"
+msgstr "Поле електронної пошти повинно бути заповнене"
+
+#: members_app/models.py:39
+msgid "First name"
+msgstr "Імʼя"
+
+#: members_app/models.py:40
+msgid "Last name"
+msgstr "Прізвище"
+
+#: members_app/models.py:41
+msgid "Phone"
+msgstr "Телефон"
+
+#: members_app/models.py:42
+msgid "Email"
+msgstr "Електронна пошта"
+
+#: members_app/models.py:43
+msgid "Date of birth"
+msgstr "Дата народження"
+
+#: members_app/models.py:45
+msgid "Image"
+msgstr "Зображення"
+
+#: members_app/models.py:47
+msgid "Date joined"
+msgstr "Дата реєстрації"
+
+#: members_app/models.py:48
+msgid "Date of last login"
+msgstr "Дата останнього входу"
+
+#: members_app/models.py:50
+msgid "Gender"
+msgstr "Стать"
+
+#: members_app/models.py:51
+msgid "Language"
+msgstr "Мова"
+
+#: members_app/models.py:53
+msgid "Color"
+msgstr "Колір"
+
+#: members_app/models.py:55
+msgid "Superuser"
+msgstr "Суперкористувач"
+
+#: members_app/models.py:56
+msgid "Staff"
+msgstr "Персонал"
+
+#: members_app/models.py:57
+msgid "Active"
+msgstr "Активний"
+
+#: members_app/models.py:58
+msgid "Deleted"
+msgstr "Видалений"
+
+#: members_app/models.py:70
+msgid "Members"
+msgstr "Учасники"
+
+#: members_app/models.py:72
+msgid "Can add courses"
+msgstr "Може додавати курси"
+
+#: members_app/models.py:73
+msgid "Can edit courses"
+msgstr "Може редагувати курси"
+
+#: members_app/models.py:74
+msgid "Can delete courses"
+msgstr "Може видаляти курси"
+
+#: notifications_app/models.py:11
+msgid "Title"
+msgstr "Заголовок"
+
+#: notifications_app/models.py:12
+msgid "Notification title"
+msgstr "Заголовок сповіщення"
+
+#: notifications_app/models.py:16
+msgid "Notification message content"
+msgstr "Вміст повідомлення сповіщення"
+
+#: notifications_app/models.py:21
+msgid "Date and time when notification was created"
+msgstr "Дата та час створення сповіщення"
+
+#: notifications_app/models.py:28
+msgid "User who receives this notification"
+msgstr "Користувач, який отримує це сповіщення"
+
+#: notifications_app/models.py:35
+msgid "Notification"
+msgstr "Сповіщення"
+
+#: notifications_app/models.py:36
+msgid "Notifications"
+msgstr "Сповіщення"
