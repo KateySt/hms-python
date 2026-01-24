@@ -6,12 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('members_app', '0001_initial'),
+        ("members_app", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='member',
-            options={'permissions': (('can_add_courses', 'Can add courses'), ('can_edit_courses', 'Can edit courses'), ('can_delete_courses', 'Can delete courses')), 'verbose_name': 'Member', 'verbose_name_plural': 'Members'},
+            name="member",
+            options={
+                "permissions": (
+                    ("can_add_courses", "Can add courses"),
+                    ("can_edit_courses", "Can edit courses"),
+                    ("can_delete_courses", "Can delete courses"),
+                ),
+                "verbose_name": "Member",
+                "verbose_name_plural": "Members",
+            },
         ),
     ]

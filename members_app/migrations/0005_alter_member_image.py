@@ -6,13 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('members_app', '0004_alter_member_image'),
+        ("members_app", "0004_alter_member_image"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='member',
-            name='image',
-            field=models.CharField(blank=True, help_text='Path to image in S3 storage', max_length=500, null=True, verbose_name='Image'),
+            model_name="member",
+            name="image",
+            field=models.CharField(
+                blank=True,
+                help_text="Path to image in S3 storage",
+                max_length=500,
+                null=True,
+                verbose_name="Image",
+            ),
         ),
     ]

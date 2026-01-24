@@ -8,29 +8,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('chart_app', '0001_initial'),
+        ("chart_app", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='message',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Created at'),
+            model_name="message",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="Created at"),
         ),
         migrations.AlterField(
-            model_name='message',
-            name='member',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Member'),
+            model_name="message",
+            name="member",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Member",
+            ),
         ),
         migrations.AlterField(
-            model_name='message',
-            name='message',
-            field=models.TextField(verbose_name='Message'),
+            model_name="message",
+            name="message",
+            field=models.TextField(verbose_name="Message"),
         ),
         migrations.AlterField(
-            model_name='message',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Updated at'),
+            model_name="message",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Updated at"),
         ),
     ]

@@ -17,17 +17,17 @@ from django.core.asgi import get_asgi_application
 
 from chart_app.routing import websocket_urlpatterns
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app.settings")
 
 # application = get_asgi_application()
 
-application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
-    'websocket': AllowedHostsOriginValidator(
-        AuthMiddlewareStack(
-            URLRouter(websocket_urlpatterns)
-        )
-    )
-})
+application = ProtocolTypeRouter(
+    {
+        "http": get_asgi_application(),
+        "websocket": AllowedHostsOriginValidator(
+            AuthMiddlewareStack(URLRouter(websocket_urlpatterns))
+        ),
+    }
+)
 
 application = asgi_cors(application, allow_all=True)

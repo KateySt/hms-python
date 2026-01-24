@@ -23,13 +23,13 @@ def get_me(request):
         except Exception as e:
             print(f"Error getting image URL: {e}")
 
-    return render(request, 'profile.html', {'member': request.user})
+    return render(request, "profile.html", {"member": request.user})
 
 
 @login_required
 def edit_me(request):
     member = request.user
-    if request.method == 'POST':
+    if request.method == "POST":
         form = MemberForm(request.POST, instance=member)
         if form.is_valid():
             member = form.save(commit=False)
@@ -37,23 +37,26 @@ def edit_me(request):
             form.save_m2m()
             if form.changed_data:
                 from members_app.signals import member_changed
-                member_changed.send(sender=User, member=member, changed_fields=form.changed_data)
 
-            return redirect('get_me')
+                member_changed.send(
+                    sender=User, member=member, changed_fields=form.changed_data
+                )
+
+            return redirect("get_me")
     else:
         form = MemberForm(instance=member)
-    return render(request, 'edit_profile.html', {'form': form})
+    return render(request, "edit_profile.html", {"form": form})
 
 
 @login_required
-@permission_required('members_app.can_delete_courses', raise_exception=True)
+@permission_required("members_app.can_delete_courses", raise_exception=True)
 def remove_course_from_member(request, course_id):
     member = request.user
     course = get_object_or_404(Course, id=course_id)
 
     member.courses.remove(course)
 
-    return redirect('get_me')
+    return redirect("get_me")
 
 
 def register_view(request):
@@ -61,20 +64,18 @@ def register_view(request):
         form = MemberCreateForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
+            user.set_password(form.cleaned_data["password"])
 
             image = request.FILES.get("image_file")
             if image:
                 try:
                     s3 = s3_bucket_service_factory()
-                    file_extension = image.name.split('.')[-1]
+                    file_extension = image.name.split(".")[-1]
                     file_name = f"{uuid4()}.{file_extension}"
                     prefix = f"avatars/user_{user.email}"
 
                     file_path = s3.upload_file_object(
-                        prefix=prefix,
-                        source_file_name=file_name,
-                        content=image.read()
+                        prefix=prefix, source_file_name=file_name, content=image.read()
                     )
                     user.image = file_path
 
@@ -102,7 +103,7 @@ def login_view(request):
             user = authenticate(username=phone, password=password)
             if user:
                 login(request, user)
-                return redirect('get_me')
+                return redirect("get_me")
     else:
         form = LoginForm()
 
@@ -111,4 +112,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect("login")
