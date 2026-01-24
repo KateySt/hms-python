@@ -8,29 +8,29 @@ from courses_app.models import Course
 
 fake = Faker()
 User = get_user_model()
-tz = pytz.timezone('UTC')
+tz = pytz.timezone("UTC")
 
 
 class CourseFactory(DjangoModelFactory):
     class Meta:
         model = Course
-        django_get_or_create = ('name',)
+        django_get_or_create = ("name",)
 
-    name = factory.Faker('name')
-    description = factory.Faker('text')
-    start_date = factory.Faker('date')
-    end_date = factory.Faker('date')
+    name = factory.Faker("name")
+    description = factory.Faker("text")
+    start_date = factory.Faker("date")
+    end_date = factory.Faker("date")
 
 
 class UserFactory(DjangoModelFactory):
     class Meta:
         model = User
 
-    phone = factory.Sequence(lambda n: f'+380671234{n:03}')
-    email = factory.Faker('email')
-    first_name = factory.Faker('first_name')
-    last_name = factory.Faker('last_name')
-    date_of_birth = factory.Faker('date_of_birth')
+    phone = factory.Sequence(lambda n: f"+380671234{n:03}")
+    email = factory.Faker("email")
+    first_name = factory.Faker("first_name")
+    last_name = factory.Faker("last_name")
+    date_of_birth = factory.Faker("date_of_birth")
 
     is_active = True
     is_staff = False

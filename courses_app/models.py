@@ -14,5 +14,5 @@ class Course(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = _('Course')
-        verbose_name_plural = _('Courses')
+        verbose_name = _("Course")
+        verbose_name_plural = _("Courses")

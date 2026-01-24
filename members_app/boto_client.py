@@ -8,11 +8,11 @@ from django.conf import settings
 
 class S3BucketService:
     def __init__(
-            self,
-            bucket_name: str,
-            access_key: str,
-            secret_key: str,
-            endpoint: str,
+        self,
+        bucket_name: str,
+        access_key: str,
+        secret_key: str,
+        endpoint: str,
     ) -> None:
         self.bucket_name = bucket_name
         self.endpoint = endpoint
@@ -26,7 +26,7 @@ class S3BucketService:
             aws_secret_access_key=self.secret_key,
             aws_session_token=None,
             endpoint_url=self.endpoint,
-            config=boto3.session.Config(signature_version='s3v4'),
+            config=boto3.session.Config(signature_version="s3v4"),
             verify=False,
         )
         return client
@@ -35,14 +35,14 @@ class S3BucketService:
         client = self.create_s3_client()
         try:
             client.head_bucket(Bucket=self.bucket_name)
-        except:
+        except:  # noqa: E72
             client.create_bucket(Bucket=self.bucket_name)
 
     def upload_file_object(
-            self,
-            prefix: str,
-            source_file_name: str,
-            content: Union[str, bytes],
+        self,
+        prefix: str,
+        source_file_name: str,
+        content: Union[str, bytes],
     ) -> str:
         client = self.create_s3_client()
         destination_path = str(Path(prefix, source_file_name))
@@ -58,12 +58,9 @@ class S3BucketService:
     def get_file_url(self, file_path: str, expiration: int = 3600) -> str:
         client = self.create_s3_client()
         url = client.generate_presigned_url(
-            'get_object',
-            Params={
-                'Bucket': self.bucket_name,
-                'Key': file_path
-            },
-            ExpiresIn=expiration
+            "get_object",
+            Params={"Bucket": self.bucket_name, "Key": file_path},
+            ExpiresIn=expiration,
         )
         return url
 
@@ -77,7 +74,7 @@ def s3_bucket_service_factory() -> S3BucketService:
         bucket_name=settings.AWS_STORAGE_BUCKET_NAME,
         access_key=settings.AWS_ACCESS_KEY_ID,
         secret_key=settings.AWS_SECRET_ACCESS_KEY,
-        endpoint=settings.AWS_S3_ENDPOINT_URL
+        endpoint=settings.AWS_S3_ENDPOINT_URL,
     )
     service.create_bucket_if_not_exists()
     return service

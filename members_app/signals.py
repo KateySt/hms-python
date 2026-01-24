@@ -16,16 +16,18 @@ User = get_user_model()
 def send_birthday_notification(sender, request, user, **kwargs):
     today = date.today()
     notification_exists = Notification.objects.filter(
-        member=user,
-        title='Happy Birthday!',
-        created_at__year=today.year
+        member=user, title="Happy Birthday!", created_at__year=today.year
     ).exists()
-    if user.date_of_birth and user.date_of_birth.month == today.month and user.date_of_birth.day == today.day:
+    if (
+        user.date_of_birth
+        and user.date_of_birth.month == today.month
+        and user.date_of_birth.day == today.day
+    ):
         if not notification_exists:
             Notification.objects.create(
                 member=user,
-                title='Happy Birthday!',
-                message='Wish you a happy birthday!',
+                title="Happy Birthday!",
+                message="Wish you a happy birthday!",
             )
 
 
@@ -36,7 +38,7 @@ def send_new_user_notification(sender, instance, **kwargs):
         Notification.objects.create(
             member=u,
             title="Added new user!",
-            message=f"{instance.first_name} {instance.last_name} was added!"
+            message=f"{instance.first_name} {instance.last_name} was added!",
         )
 
 
@@ -47,7 +49,7 @@ def send_user_deleted_notification(sender, instance, **kwargs):
         Notification.objects.create(
             member=u,
             title="Deleted user!",
-            message=f"{instance.first_name} {instance.last_name} was deleted!"
+            message=f"{instance.first_name} {instance.last_name} was deleted!",
         )
 
 
@@ -56,5 +58,5 @@ def notify_status_change(sender, member, changed_fields, **kwargs):
     Notification.objects.create(
         member=member,
         title="Status changed",
-        message=f"Fields {', '.join(changed_fields)} were updated."
+        message=f"Fields {', '.join(changed_fields)} were updated.",
     )

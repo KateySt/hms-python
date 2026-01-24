@@ -11,27 +11,34 @@ User = get_user_model()
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
-        read_only_fields = ['id', 'updated_at', 'created_at']
+        fields = "__all__"
+        read_only_fields = ["id", "updated_at", "created_at"]
 
 
 class MemberSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
     courses_id = serializers.PrimaryKeyRelatedField(
-        many=True,
-        queryset=Course.objects.all(),
-        allow_null=True,
-        write_only=True
+        many=True, queryset=Course.objects.all(), allow_null=True, write_only=True
     )
     courses = CourseSerializer(many=True, read_only=True)
 
     class Meta:
         model = User
         fields = [
-            'id', 'first_name', 'last_name', 'phone', 'email', 'date_of_birth',
-            'gender', 'language', 'color', 'full_name', 'courses', 'courses_id'
+            "id",
+            "first_name",
+            "last_name",
+            "phone",
+            "email",
+            "date_of_birth",
+            "gender",
+            "language",
+            "color",
+            "full_name",
+            "courses",
+            "courses_id",
         ]
-        read_only_fields = ['id']
+        read_only_fields = ["id"]
 
     @extend_schema_field(serializers.CharField())
     def get_full_name(self, obj):
@@ -48,12 +55,12 @@ class RefreshTokenSerializer(serializers.Serializer):
 
 
 class JWTAuthenticationScheme(OpenApiAuthenticationExtension):
-    target_class = 'members_api.authentication.JWTAuthentication'
-    name = 'Bearer'
+    target_class = "members_api.authentication.JWTAuthentication"
+    name = "Bearer"
 
     def get_security_definition(self, auto_schema):
         return {
-            'type': 'http',
-            'scheme': 'bearer',
-            'bearerFormat': 'JWT',
+            "type": "http",
+            "scheme": "bearer",
+            "bearerFormat": "JWT",
         }

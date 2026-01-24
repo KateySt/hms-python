@@ -6,38 +6,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('courses_app', '0001_initial'),
+        ("courses_app", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='course',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Created at'),
+            model_name="course",
+            name="created_at",
+            field=models.DateTimeField(auto_now_add=True, verbose_name="Created at"),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='description',
-            field=models.TextField(verbose_name='Description'),
+            model_name="course",
+            name="description",
+            field=models.TextField(verbose_name="Description"),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='end_date',
-            field=models.DateTimeField(verbose_name='End date'),
+            model_name="course",
+            name="end_date",
+            field=models.DateTimeField(verbose_name="End date"),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='name',
-            field=models.CharField(max_length=100, verbose_name='Name'),
+            model_name="course",
+            name="name",
+            field=models.CharField(max_length=100, verbose_name="Name"),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='start_date',
-            field=models.DateTimeField(verbose_name='Start date'),
+            model_name="course",
+            name="start_date",
+            field=models.DateTimeField(verbose_name="Start date"),
         ),
         migrations.AlterField(
-            model_name='course',
-            name='updated_at',
-            field=models.DateTimeField(auto_now=True, verbose_name='Updated at'),
+            model_name="course",
+            name="updated_at",
+            field=models.DateTimeField(auto_now=True, verbose_name="Updated at"),
         ),
     ]

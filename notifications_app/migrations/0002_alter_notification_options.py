@@ -6,12 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('notifications_app', '0001_initial'),
+        ("notifications_app", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='notification',
-            options={'ordering': ['-created_at'], 'verbose_name': 'Notification', 'verbose_name_plural': 'Notifications'},
+            name="notification",
+            options={
+                "ordering": ["-created_at"],
+                "verbose_name": "Notification",
+                "verbose_name_plural": "Notifications",
+            },
         ),
     ]

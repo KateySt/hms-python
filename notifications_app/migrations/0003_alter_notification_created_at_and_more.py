@@ -8,29 +8,43 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('notifications_app', '0002_alter_notification_options'),
+        ("notifications_app", "0002_alter_notification_options"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='notification',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='Date and time when notification was created', verbose_name='Created at'),
+            model_name="notification",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="Date and time when notification was created",
+                verbose_name="Created at",
+            ),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='member',
-            field=models.ForeignKey(help_text='User who receives this notification', on_delete=django.db.models.deletion.CASCADE, related_name='notifications', to=settings.AUTH_USER_MODEL, verbose_name='Member'),
+            model_name="notification",
+            name="member",
+            field=models.ForeignKey(
+                help_text="User who receives this notification",
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="notifications",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Member",
+            ),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='message',
-            field=models.TextField(help_text='Notification message content', verbose_name='Message'),
+            model_name="notification",
+            name="message",
+            field=models.TextField(
+                help_text="Notification message content", verbose_name="Message"
+            ),
         ),
         migrations.AlterField(
-            model_name='notification',
-            name='title',
-            field=models.CharField(help_text='Notification title', max_length=255, verbose_name='Title'),
+            model_name="notification",
+            name="title",
+            field=models.CharField(
+                help_text="Notification title", max_length=255, verbose_name="Title"
+            ),
         ),
     ]
